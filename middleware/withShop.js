@@ -4,7 +4,7 @@ module.exports = function withShop({ authBaseUrl } = {}) {
     const { accessToken } = session
     const shop = getShopFromReferrer(request.get('referer')) || query.shop
 
-    if (accessToken && session.shop === shop) {
+    if (accessToken && (!shop || session.shop === shop)) {
       next()
       return
     }
