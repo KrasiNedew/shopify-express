@@ -2,7 +2,7 @@ module.exports = function withShop({ authBaseUrl } = {}) {
   return function verifyRequest(request, response, next) {
     const { query: { shop }, session, baseUrl } = request;
 
-    if (session && session.accessToken) {
+    if (session && session.accessToken && session.shop && session.shop === shop) {
       next();
       return;
     }
